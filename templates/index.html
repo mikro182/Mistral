@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PageBeats – learn with songs</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="card">
+    <h1>🎸 PageBeats</h1>
+    <p class="tagline">Snap a page of your book, get a song that teaches it to you.</p>
+
+    {% if error %}<p class="error">{{ error }}</p>{% endif %}
+
+    <form action="{{ url_for('generate') }}" method="post" enctype="multipart/form-data" id="gen-form">
+      <label class="dropzone" for="pages">
+        <input type="file" id="pages" name="pages" accept="image/*" multiple required>
+        <span id="dropzone-text">📷 Click to add pictures of your pages (up to 10)</span>
+      </label>
+
+      <label for="subject">What are you studying? <small>(optional)</small></label>
+      <input type="text" id="subject" name="subject" placeholder="e.g. Photosynthesis for my biology test">
+
+      <button type="submit" id="submit-btn">🎵 Make my song</button>
+      <p class="status" id="status" hidden>Reading your pages, writing lyrics and producing the track… this usually takes 1–3 minutes. 🎶</p>
+    </form>
+  </main>
+
+  <script>
+    const form = document.getElementById('gen-form');
+    const btn = document.getElementById('submit-btn');
+    const status = document.getElementById('status');
+    const input = document.getElementById('pages');
+    const dropzoneText = document.getElementById('dropzone-text');
+    input.addEventListener('change', () => {
+      const n = input.files.length;
+      dropzoneText.textContent = n === 0
+        ? '📷 Click to add pictures of your pages (up to 10)'
+        : `📷 ${n} page${n > 1 ? 's' : ''} selected`;
+    });
+    form.addEventListener('submit', () => {
+      btn.disabled = true;
+      btn.textContent = '🎵 Working on it…';
+      status.hidden = false;
+    });
+  </script>
+</body>
+</html>

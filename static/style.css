@@ -1,0 +1,90 @@
+:root {
+  --bg: #12121c;
+  --card: #1d1d2b;
+  --text: #f1f1f7;
+  --muted: #9a9ab0;
+  --accent: #ff5c8a;
+  --accent-2: #7c5cff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(1200px 600px at 20% -10%, #2a1b4d 0%, var(--bg) 55%);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: 3rem 1rem;
+}
+
+.card {
+  background: var(--card);
+  width: 100%;
+  max-width: 640px;
+  border-radius: 18px;
+  padding: 2rem 2.2rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  height: fit-content;
+}
+
+h1 { margin: 0 0 0.3rem; font-size: 1.9rem; }
+h2 { margin-top: 1.8rem; font-size: 1.2rem; }
+h3 { margin: 1rem 0 0.3rem; color: var(--accent); text-transform: capitalize; font-size: 0.95rem; }
+.tagline { color: var(--muted); margin-top: 0; }
+.meta { color: var(--muted); }
+.error {
+  background: rgba(255, 92, 138, 0.15);
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  padding: 0.7rem 1rem;
+}
+
+.dropzone {
+  display: block;
+  border: 2px dashed #3d3d55;
+  border-radius: 12px;
+  padding: 1.6rem 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s;
+  margin-bottom: 1rem;
+}
+.dropzone:hover { border-color: var(--accent-2); }
+.dropzone input { display: none; }
+#dropzone-text { color: var(--muted); }
+
+label { display: block; margin: 1rem 0 0.4rem; font-weight: 600; }
+label small { color: var(--muted); font-weight: 400; }
+
+input[type="text"] {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border-radius: 10px;
+  border: 1px solid #3d3d55;
+  background: #14141f;
+  color: var(--text);
+  font-size: 1rem;
+}
+
+button {
+  width: 100%;
+  margin-top: 1.4rem;
+  padding: 0.85rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+button:disabled { opacity: 0.6; cursor: wait; }
+.status { color: var(--muted); text-align: center; }
+
+audio { width: 100%; margin-top: 0.8rem; }
+.download { color: var(--accent); text-decoration: none; font-weight: 600; }
+.back { color: var(--muted); text-decoration: none; display: inline-block; margin-bottom: 0.8rem; }
+.lyrics p { margin: 0.25rem 0; line-height: 1.5; }
