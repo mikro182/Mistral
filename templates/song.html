@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ song.title }} – PageBeats</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="card">
+    <a class="back" href="{{ url_for('index') }}">← New song</a>
+    <h1>🎵 {{ song.title }}</h1>
+    <p class="meta">
+      {{ song.genre }} · {{ song.bpm }} BPM · {{ song.key }}
+      · {{ '%d:%02d'|format(song.duration_seconds // 60, song.duration_seconds % 60) }}
+      {% if not song.has_vocals %}· instrumental (vocals unavailable){% endif %}
+    </p>
+
+    <audio controls preload="metadata" src="{{ url_for('outputs', song_id=song.id, filename='song.wav') }}"></audio>
+    <p><a class="download" href="{{ url_for('outputs', song_id=song.id, filename='song.wav') }}" download>⬇ Download song</a></p>
+
+    <h2>Lyrics</h2>
+    <div class="lyrics">
+      {% for section in song.sections %}
+        <h3>{{ section.name }}</h3>
+        {% for line in section.lines %}<p>{{ line }}</p>{% endfor %}
+      {% endfor %}
+    </div>
+  </main>
+</body>
+</html>
